@@ -4,16 +4,21 @@ import(
 	"fmt"
 )
 
-const name = "Hello, "
+const Deutschprefix = "Hallo, "
+const deutsch = "Deutsch"
 func main(){
-	str := Hello("Hannah")
-
+	str := Hello("Hannah", "Deutsch")
+	
 	fmt.Println(str)
 }
 
-func Hello(s string)string{
+func Hello(s, lang string)string{
+	 name := "Hello, "
 	if s == ""{
 		s = "World"
+	}
+	if lang == deutsch{
+		name = Deutschprefix
 	}
 	return name + s
 }
