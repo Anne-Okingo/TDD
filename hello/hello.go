@@ -1,24 +1,57 @@
 package main
 
-import(
+import (
 	"fmt"
+	"os"
+	"strings"
 )
 
-const Deutschprefix = "Hallo, "
-const deutsch = "Deutsch"
+const (
+	Englishprefix = "Hello, "
+	Spanishprefix = "Hola, "
+	Deutschprefix = "Hallo, "
+	deutsch       = "deutsch"
+	spanish       = "spanish"
+	english       = "english"
+)
+
 func main(){
-	str := Hello("Hannah", "Deutsch")
-	
+
+	if len( os.Args) <=1{
+		fmt.Println("Hello, World\nPlease enter your name and langunage")
+		return
+	}
+
+	name := os.Args[1]
+
+	if len(os.Args) <= 2{
+		s := Englishprefix + name
+
+		fmt.Println(s)
+		return
+	}
+	lang := os.Args[2]
+
+	str := Hello(name, lang)
 	fmt.Println(str)
 }
 
-func Hello(s, lang string)string{
-	 name := "Hello, "
-	if s == ""{
-		s = "World"
+func Hello(name, lang string) string {
+	// Normalize input to lowercase for case-insensitive comparison
+	lang = strings.ToLower(lang)
+
+	// Use a switch statement for the greeting based on the language
+	var prefix string
+	switch lang {
+	case english:
+		prefix = Englishprefix
+	case deutsch:
+		prefix = Deutschprefix
+	case spanish:
+		prefix = Spanishprefix
+	default:
+		prefix = Englishprefix // Default to English if no match
 	}
-	if lang == deutsch{
-		name = Deutschprefix
-	}
-	return name + s
+
+	return prefix + name
 }
