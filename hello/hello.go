@@ -37,7 +37,9 @@ func main(){
 }
 
 func Hello(name, lang string) string {
-	// Normalize input to lowercase for case-insensitive comparison
+	if name == ""{
+		return "Hello, World"
+	}
 	lang = strings.ToLower(lang)
 
 	// Use a switch statement for the greeting based on the language
